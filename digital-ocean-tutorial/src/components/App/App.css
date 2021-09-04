@@ -4,7 +4,7 @@
   align-items: center;
 }
 
-button {
+.container button {
   font-size: 2em;
   border: 0;
   padding: 0;
@@ -21,4 +21,16 @@ li {
   margin: 20px;
   list-style: none;
   padding: 0;
+}
+
+.wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding: 20px;
+}
+
+.wrapper h1{
+  text-align: center;
+  width: 100%;
 }
