@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import data from './data';
+import animals from './data';
 import AnimalCard from '../AnimalCard/AnimalCard'
 
 import Instructions from '../Instructions/Instructions.js'
@@ -49,7 +49,7 @@ function App() {
   </div>
   <div className="wrapper">
     <h1>Animals</h1>
-    {data.map(animal => (<AnimalCard
+    {animals.map(animal => (<AnimalCard
                             additional={animal.additional}
                             diet={animal.diet}
                             key={animal.name}
