@@ -6,7 +6,9 @@ import Alert from '../Alert/Alert'
 function Style() {
   return (
       <div className="wrapper">
-        <Alert />
+        <Alert title="Items Not Added" type="error">
+         <div>Your items are out of stock.</div>
+        </Alert>
       </div>
     )
 }
