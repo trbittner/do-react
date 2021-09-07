@@ -2,6 +2,7 @@ import React from 'react'
 import './Style.css'
 
 import Alert from '../Alert/Alert'
+import CartSucess from '../CartSuccess/CartSuccess'
 
 function Style() {
   return (
@@ -9,6 +10,7 @@ function Style() {
         <Alert title="Items Not Added" type="error">
          <div>Your items are out of stock.</div>
         </Alert>
+        <CartSucess />
       </div>
     )
 }
