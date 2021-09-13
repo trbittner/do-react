@@ -1,28 +1,30 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import { createUseStyles } from 'react-jss'
 
-export default function Alert({ children, title, type }) {
-  const colors = {
-    success: '#6da06f',
-    error: '#f56260'
-  }
-  
-  const style = {
-    heading: {
-      color: colors[type],
-      margin: '0 0 10px 0',
-    },
-    wrapper: {
-      border: `${colors[type]} solid 1px`,
+const colors = {
+  success: '#6da06f',
+  error: '#f56260'
+}
+
+const useStyles = createUseStyles({
+  wrapper: {
+      border: ({type}) => `${colors[type]} solid 1px`,
       marginBottom: 15,
       padding: 15,
-      position: 'relative'
-    }
+      position: 'relative',
+      '& > h2': {
+      color: ({type}) => colors[type],
+      margin: [0, 0, 10, 0]
+      }
   }
-  
+})
+
+export default function Alert({ children, title, type }) {
+  const classes = useStyles({type})
   return (
-    <div style={style.wrapper}>
-      <h2 style={style.heading}>{title}</h2>
+    <div className={classes.wrapper}>
+      <h2>{title}</h2>
       {children}
     </div>
     )
