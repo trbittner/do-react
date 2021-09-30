@@ -10,4 +10,5 @@
 .wrapper button {
   font-size: 20px;
   background: none;
+  border: black solid 1px;
 }
