@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useReducer } from 'react'
 import './Product.css'
 
 const products = [
@@ -24,17 +24,38 @@ const currencyOptions = {
   maximumFractionDigits: 2
 }
 
-function getTotal(total) {
+function getTotal(cart) {
+  const total = cart.reduce((totalCost,item) => totalCost + item.price,0)
   return total.toLocaleString(undefined,currencyOptions)
 }
 
+function cartReducer(state,action) {
+  switch(action.type) {
+    case 'add':
+      return [...state,action.product]
+    case 'remove':
+      const productIndex = state.findIndex(item => item.name === action.product.name)
+      if (productIndex < 0) {
+        return state
+      }
+      const update = [...state]
+      update.splice(productIndex,1)
+      return update
+    default:
+      return state
+      
+  }
+}
+
 export default function Product() {
-    const [cart,setCart] = useState([])
-    const [total,setTotal] = useState(0)
+    const [cart,setCart] = useReducer(cartReducer,[])
 
     function add(product) {
-      setCart(current => [...current,product.name])
-      setTotal(current => current + product.price)
+      setCart({product,type: 'add'})
+    }
+    
+    function remove(product) {
+      setCart({product,type: 'remove'})
     }
 
     return (
@@ -42,14 +63,14 @@ export default function Product() {
         <div>
           Shopping Cart: {cart.length} total items.
         </div>
-        <div>Total: {getTotal(total)}</div>
+        <div>Total: {getTotal(cart)}</div>
         {products.map(product => (
           <div key={product.name}>
             <div className="product">
               <span role="img" aria-label={product.name}>{product.emoji}</span>
             </div>
             <button onClick={() => add(product)}>Add</button>
-            <button>Remove</button>
+            <button onClick={() => remove(product)}>Remove</button>
           </div>
         ))}
       </div>
