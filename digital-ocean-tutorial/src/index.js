@@ -1,12 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import StateClass from './components/StateClass/StateClass';
+import Salad from './components/Salad/Salad';
 import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
   <React.StrictMode>
-    <StateClass />
+    <Salad />
   </React.StrictMode>,
   document.getElementById('root')
 );
